@@ -89,17 +89,25 @@ const catCreaterController = (req, res, next) => {
 
 // PUTS
 
+const userUpdaterController = (req, res, next) => {
+  const id = req.params.id
+  const user = model.getUserById(id)
+  if (!user) return next({status: 404, message: `Could not find user with id of ${id}.`})
+
+  const { name, email, hidden, image, city, state, zip } = req.body
+
+  const updatedUser = model.updateUser(id, name, email, hidden, image, city, state, zip)
+  res.status(200).json(updatedUser)
+}
+
 const catUpdaterController = (req, res, next) => {
 
 }
 
-const userUpdaterController = (req, res, next) => {
 
-}
-
-const catByUserUpdaterController = (req, res, next) => {
-
-}
+// const catByUserUpdaterController = (req, res, next) => {
+//
+// }
 
 
 // delete
@@ -132,7 +140,7 @@ module.exports = {
   // catByUserCreaterController,
   catUpdaterController,
   userUpdaterController,
-  catByUserUpdaterController,
+  // catByUserUpdaterController,
   catDeleterController,
   userDeleterController,
   catByUserDeleterController

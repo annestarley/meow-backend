@@ -185,6 +185,22 @@ function createCat(name, age, gender, fixed, bio, image1, image2, image3, image4
   return cat
 }
 
+// PUTS
+
+function updateUser(id, name, email, hidden, image, city, state, zip) {
+  const user = getUserById(id)
+  user.name = name
+  user.email = email
+  user.hidden = hidden
+  user.image = image
+  user.city = city
+  user.state = state
+  user.zip = zip
+
+  return user
+}
+
+
 module.exports = {
   getAllCats,
   getCatById,
@@ -193,5 +209,6 @@ module.exports = {
   getCatsByUser,
   getCatByUserAndId,
   createUser,
-  createCat
+  createCat,
+  updateUser 
 }

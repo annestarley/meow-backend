@@ -25,9 +25,9 @@ app.get('/likes/:id', controller.likeByIdController)
 app.post('/users', controller.userCreaterController)
 app.post('/users/:id/cats/', controller.catCreaterController)
 
-app.put('/cats/:id', controller.catUpdaterController)
+// app.put('/cats/:id', controller.catUpdaterController)
 app.put('/users/:id', controller.userUpdaterController)
-app.put('/users/:userId/cats/:id', controller.catByUserUpdaterController)
+app.put('/users/:userId/cats/:id', controller.catUpdaterController)
 
 app.delete('/cats/:id', controller.catDeleterController)
 app.delete('/users/:id', controller.userDeleterController)
