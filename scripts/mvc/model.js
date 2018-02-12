@@ -135,13 +135,11 @@ function getAllUsers() {
 }
 
 function getUserById(id) {
-  console.log('get user by id');
   let user = users.find(user => user.id == id)
   if (user) return user
 }
 
 function getCatsByUser(id) {
-  console.log('get cats by user');
   let user = getUserById(id)
   userCats = []
   user.cats.forEach(userCat => {
@@ -154,10 +152,17 @@ function getCatsByUser(id) {
   return userCats
 }
 
+function getCatByUserAndId(catId, userId) {
+  let cats = getCatsByUser(userId)
+  let cat = cats.find(cat => cat.id == catId)
+  if (cat) return cat
+}
+
 module.exports = {
   getAllCats,
   getCatById,
   getAllUsers,
   getUserById,
-  getCatsByUser
+  getCatsByUser,
+  getCatByUserAndId
 }

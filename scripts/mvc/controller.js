@@ -31,14 +31,26 @@ const userByIdController = (req, res, next) => {
 
 const catsByUserController = (req, res, next) => {
   const id = req.params.id
+
   const user = model.getUserById(id)
   if (!user) return next({status: 404, message: `Could not find user with id of ${id}.`})
+
   const userCats = model.getCatsByUser(id)
   res.json(userCats)
 }
 
 const catByUserAndIdController = (req, res, next) => {
+  const catId = req.params.id
+  const userId = req.params.userId
 
+  const user = model.getUserById(userId)
+  if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
+  const cat = model.getCatById(catId)
+  if (!cat) return next({status: 404, message: `Could not find cat with id of ${catId}.`})
+  const catByUserAndId = model.getCatByUserAndId(catId, userId)
+  if (!catByUserAndId) return next({status: 404, message: `Could not find cat with id of ${catId} belonging to user with id of ${userId}.`})
+
+  res.json(catByUserAndId)
 }
 
 //likes
