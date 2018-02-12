@@ -16,9 +16,9 @@ cats = [
     bio: "I am an example! I'm not as grumpy as I seem. I just hate everyone and thing. I hope you all step on legos today.",
     images: ['./images/grumpy-cat/1.jpeg', './images/grumpy-cat/2.jpg', './images/grumpy-cat/3.jpg', './images/grumpy-cat/4.jpg'],
     userId: 1,
-    userName: 'Lady Tremaine',
-    userEmail: 'ladytremaine@example.com',
-    userImage: './images/Lucifer/owner.jpg',
+    // userName: 'Lady Tremaine',
+    // userEmail: 'ladytremaine@example.com',
+    // userImage: './images/Lucifer/owner.jpg',
   },
   {
     id: 2,
@@ -32,9 +32,9 @@ cats = [
     bio: "I am an example! I am a Night Fury, arguably the rarest and most intelligent of.. cat species.",
     images: ['./images/toothless/1.jpg', './images/toothless/2.jpg', './images/toothless/3.jpg'],
     userId: 2,
-    userName: 'Hiccup Horrendous Haddock III',
-    userEmail: 'hiccupIII@example.com',
-    userImage: './images/toothless/owner.jpg',
+    // userName: 'Hiccup Horrendous Haddock III',
+    // userEmail: 'hiccupIII@example.com',
+    // userImage: './images/toothless/owner.jpg',
   },
   {
     id: 3,
@@ -48,9 +48,9 @@ cats = [
     bio: "I am an example! I like cornflakes, huggies, and balloons that blow up into funny shapes.",
     images: ['./images/junior/1.jpg', './images/junior/2.jpg', './images/junior/3.jpg', './images/junior/4.jpg'],
     userId: 3,
-    userName: 'H.I. Mcdunnough',
-    userEmail: 'hi@example.com',
-    userImage: './images/junior/owner.jpg',
+    // userName: 'H.I. Mcdunnough',
+    // userEmail: 'hi@example.com',
+    // userImage: './images/junior/owner.jpg',
   },
   {
     id: 4,
@@ -64,9 +64,9 @@ cats = [
     bio: "I am an example! I'm the cat MEOW deserves, but not the one it needs... or something. I'm not a hero. I'm a silent guardian. A watchful protector.'",
     images: ['./images/bat-cat/1.jpeg', './images/bat-cat/2.jpg', './images/bat-cat/3.jpg', './images/bat-cat/4.jpeg'],
     userId: 4,
-    userName: 'H.I. Mcdunnough',
-    userEmail: 'bruce@wayne-enterprises.com',
-    userImage: './images/bat-cat/owner.jpg',
+    // userName: 'H.I. Mcdunnough',
+    // userEmail: 'bruce@wayne-enterprises.com',
+    // userImage: './images/bat-cat/owner.jpg',
   },
   {
     id: 5,
@@ -80,19 +80,46 @@ cats = [
     bio: "I am an example! I am a farm cat working hard to rid our manor of the vermin it is infested with. I get little appreciation from the the snooty stepdaughter but the rest of the family is a wonderful group of dames.",
     images: ['./images/lucifer/1.jpeg', './images/lucifer/2.jpg', './images/lucifer/3.jpg', './images/lucifer/4.jpeg'],
     userId: 1,
-    userName: 'Lady Tremaine',
-    userEmail: 'ladytremaine@example.com',
-    userImage: './images/lucifer/owner.jpg',
+    // userName: 'Lady Tremaine',
+    // userEmail: 'ladytremaine@example.com',
+    // userImage: './images/lucifer/owner.jpg',
   }
 ]
 
 users = [
-
+  {
+    id: 1,
+    name: 'Lady Tremaine',
+    email: 'ladytremaine@example.com',
+    image:'./images/lucifer/owner.jpg',
+    cats: [1, 5]
+  },
+  {
+    id: 2,
+    name: 'Hiccup Horrendous Haddock III',
+    email: 'hiccupIII@example.com',
+    image:'./images/toothless/owner.jpg',
+    cats: [2]
+  },
+  {
+    id: 3,
+    name: 'H.I. Mcdunnough',
+    email: 'hi@example.com',
+    image:'./images/junior/owner.jpg',
+    cats: [3]
+  },
+  {
+    id: 4,
+    name: 'Bruce Wayne',
+    email: 'bruce@wayne-enterprises.com',
+    image:'./images/bat-cat/owner.jpg',
+    cats: [4]
+  },
 ]
 
 // GET routes
 
-//cats
+// cats
 function getAllCats() {
   return cats
 }
@@ -102,7 +129,19 @@ function getCatById(id) {
   if (cat) return cat
 }
 
+// users
+function getAllUsers() {
+  return users
+}
+
+function getUserById(id) {
+  let user = users.find(user => user.id == id)
+  if (user) return user
+}
+
 module.exports = {
   getAllCats,
-  getCatById
+  getCatById,
+  getAllUsers,
+  getUserById
 }
