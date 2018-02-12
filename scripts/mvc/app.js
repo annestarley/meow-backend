@@ -8,6 +8,9 @@ const port = process.env.PORT || 3000
 const controller = require('./controller')
 const model = require('./model')
 
+app.use(bodyParser.json())
+app.use(morgan('dev'))
+
 
 app.get('/cats', controller.catsController)
 app.get('/cats/:id', controller.catByIdController)
@@ -18,17 +21,17 @@ app.get('/users/:userId/cats/:id', controller.catByUserAndIdController)
 app.get('/likes', controller.likesController)
 app.get('/likes/:id', controller.likeByIdController)
 
-app.post('cats', controller.catCreaterController)
-app.post('users', controller.userCreaterController)
-app.post('users/:userId/cats/:id', controller.catByUserCreaterController)
+// app.post('cats', controller.catCreaterController)  "decided I can't create cat without a user"
+app.post('/users', controller.userCreaterController)
+app.post('/users/:userId/cats/', controller.catCreaterController)
 
-app.put('cats/:id', controller.catUpdaterController)
-app.put('users/:id', controller.userUpdaterController)
-app.put('users/:userId/cats/:id', controller.catByUserUpdaterController)
+app.put('/cats/:id', controller.catUpdaterController)
+app.put('/users/:id', controller.userUpdaterController)
+app.put('/users/:userId/cats/:id', controller.catByUserUpdaterController)
 
-app.delete('cats/:id', controller.catDeleterController)
-app.delete('users/:id', controller.userDeleterController)
-app.delete('users/:userId/cats/:id', controller.catByUserDeleterController)
+app.delete('/cats/:id', controller.catDeleterController)
+app.delete('/users/:id', controller.userDeleterController)
+app.delete('/users/:userId/cats/:id', controller.catByUserDeleterController)
 
 
 app.use((err, req, res, next) => {

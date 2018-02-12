@@ -66,17 +66,21 @@ const likeByIdController = (req, res, next) => {
 
 //POSTS
 
+const userCreaterController = (req, res, next) => {
+  const { name, email, hidden, image } = req.body
+  if(!name || !email || !hidden) return next({status: `Required: make sure to include a name and email address!`})
+
+  const user = model.createUser(name, email, hidden, image)
+  res.status(201).json(user)
+}
+
 const catCreaterController = (req, res, next) => {
 
 }
 
-const userCreaterController = (req, res, next) => {
-
-}
-
-const catByUserCreaterController = (req, res, next) => {
-
-}
+// const catByUserCreaterController = (req, res, next) => {
+//
+// }
 
 
 // PUTS
@@ -121,7 +125,7 @@ module.exports = {
   likeByIdController,
   catCreaterController,
   userCreaterController,
-  catByUserCreaterController,
+  // catByUserCreaterController,
   catUpdaterController,
   userUpdaterController,
   catByUserUpdaterController,

@@ -16,9 +16,6 @@ cats = [
     bio: "I am an example! I'm not as grumpy as I seem. I just hate everyone and thing. I hope you all step on legos today.",
     images: ['./images/grumpy-cat/1.jpeg', './images/grumpy-cat/2.jpg', './images/grumpy-cat/3.jpg', './images/grumpy-cat/4.jpg'],
     userId: 1,
-    // userName: 'Lady Tremaine',
-    // userEmail: 'ladytremaine@example.com',
-    // userImage: './images/Lucifer/owner.jpg',
   },
   {
     id: 2,
@@ -32,9 +29,6 @@ cats = [
     bio: "I am an example! I am a Night Fury, arguably the rarest and most intelligent of.. cat species.",
     images: ['./images/toothless/1.jpg', './images/toothless/2.jpg', './images/toothless/3.jpg'],
     userId: 2,
-    // userName: 'Hiccup Horrendous Haddock III',
-    // userEmail: 'hiccupIII@example.com',
-    // userImage: './images/toothless/owner.jpg',
   },
   {
     id: 3,
@@ -48,9 +42,6 @@ cats = [
     bio: "I am an example! I like cornflakes, huggies, and balloons that blow up into funny shapes.",
     images: ['./images/junior/1.jpg', './images/junior/2.jpg', './images/junior/3.jpg', './images/junior/4.jpg'],
     userId: 3,
-    // userName: 'H.I. Mcdunnough',
-    // userEmail: 'hi@example.com',
-    // userImage: './images/junior/owner.jpg',
   },
   {
     id: 4,
@@ -64,9 +55,6 @@ cats = [
     bio: "I am an example! I'm the cat MEOW deserves, but not the one it needs... or something. I'm not a hero. I'm a silent guardian. A watchful protector.'",
     images: ['./images/bat-cat/1.jpeg', './images/bat-cat/2.jpg', './images/bat-cat/3.jpg', './images/bat-cat/4.jpeg'],
     userId: 4,
-    // userName: 'H.I. Mcdunnough',
-    // userEmail: 'bruce@wayne-enterprises.com',
-    // userImage: './images/bat-cat/owner.jpg',
   },
   {
     id: 5,
@@ -80,9 +68,6 @@ cats = [
     bio: "I am an example! I am a farm cat working hard to rid our manor of the vermin it is infested with. I get little appreciation from the the snooty stepdaughter but the rest of the family is a wonderful group of dames.",
     images: ['./images/lucifer/1.jpeg', './images/lucifer/2.jpg', './images/lucifer/3.jpg', './images/lucifer/4.jpeg'],
     userId: 1,
-    // userName: 'Lady Tremaine',
-    // userEmail: 'ladytremaine@example.com',
-    // userImage: './images/lucifer/owner.jpg',
   }
 ]
 
@@ -91,6 +76,7 @@ users = [
     id: 1,
     name: 'Lady Tremaine',
     email: 'ladytremaine@example.com',
+    hidden: false,
     image:'./images/lucifer/owner.jpg',
     cats: [1, 5]
   },
@@ -98,6 +84,7 @@ users = [
     id: 2,
     name: 'Hiccup Horrendous Haddock III',
     email: 'hiccupIII@example.com',
+    hidden: false,
     image:'./images/toothless/owner.jpg',
     cats: [2]
   },
@@ -105,6 +92,7 @@ users = [
     id: 3,
     name: 'H.I. Mcdunnough',
     email: 'hi@example.com',
+    hidden: true,
     image:'./images/junior/owner.jpg',
     cats: [3]
   },
@@ -112,6 +100,7 @@ users = [
     id: 4,
     name: 'Bruce Wayne',
     email: 'bruce@wayne-enterprises.com',
+    hidden: true,
     image:'./images/bat-cat/owner.jpg',
     cats: [4]
   },
@@ -158,11 +147,38 @@ function getCatByUserAndId(catId, userId) {
   if (cat) return cat
 }
 
+// likes
+
+
+
+
+// POSTS
+
+function createUser(name, email, hidden, image) {
+  const user = {
+    id: uuid(),
+    name: name,
+    email: email,
+    hidden: hidden,
+    image: image
+  }
+  users.push(user)
+
+  return user
+}
+
+
+
+function createCat() {
+
+}
+
 module.exports = {
   getAllCats,
   getCatById,
   getAllUsers,
   getUserById,
   getCatsByUser,
-  getCatByUserAndId
+  getCatByUserAndId,
+  createUser
 }
