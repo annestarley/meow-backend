@@ -67,15 +67,19 @@ const likeByIdController = (req, res, next) => {
 //POSTS
 
 const userCreaterController = (req, res, next) => {
-  const { name, email, hidden, image } = req.body
+  const { name, email, hidden, image, city, state, zip } = req.body
   if(!name || !email || !hidden) return next({status: `Required: make sure to include a name and email address!`})
 
-  const user = model.createUser(name, email, hidden, image)
+  const user = model.createUser(name, email, hidden, image, city, state, zip)
   res.status(201).json(user)
 }
 
 const catCreaterController = (req, res, next) => {
+  const userId = req.params.id
+  const { name, age, gender, fixed, bio, image1, image2, image3, image4 } = req.body
 
+  const cat = model.createCat(name, age, gender, fixed, bio, image1, image2, image3, image4, userId)
+  res.status(201).json(cat)
 }
 
 // const catByUserCreaterController = (req, res, next) => {
