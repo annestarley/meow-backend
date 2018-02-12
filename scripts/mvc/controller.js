@@ -10,7 +10,10 @@ const catsController = (req, res, next) => {
 }
 
 const catByIdController = (req, res, next) => {
-
+  const id = req.params.id
+  const cat = model.getCatById(id)
+  if (!cat) return next({status: 404, message: `Could not find cat with id of ${id}.`})
+  res.json(cat)
 }
 
 // users
@@ -83,7 +86,7 @@ const userDeleterController = (req, res, next) => {
 }
 
 const catByUserDeleterController = (req, res, next) => {
-  
+
 }
 
 
