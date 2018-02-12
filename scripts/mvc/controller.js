@@ -30,7 +30,11 @@ const userByIdController = (req, res, next) => {
 }
 
 const catsByUserController = (req, res, next) => {
-
+  const id = req.params.id
+  const user = model.getUserById(id)
+  if (!user) return next({status: 404, message: `Could not find user with id of ${id}.`})
+  const userCats = model.getCatsByUser(id)
+  res.json(userCats)
 }
 
 const catByUserAndIdController = (req, res, next) => {

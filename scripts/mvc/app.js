@@ -33,7 +33,7 @@ app.delete('users/:userId/cats/:id', controller.catByUserDeleterController)
 
 app.use((err, req, res, next) => {
   let status = err.status || 404
-  res.status(status).json({ error: { message: 'Not found' }})
+  res.status(status).json({ error: { message: err.message }})
 })
 
 const listener = () => `Listening on ports ${port}!`
