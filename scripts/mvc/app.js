@@ -23,7 +23,7 @@ app.get('/likes/:id', controller.likeByIdController)
 
 // app.post('cats', controller.catCreaterController)  "decided I can't create cat without a user"
 app.post('/users', controller.userCreaterController)
-app.post('/users/:id/cats/', controller.catCreaterController)
+app.post('/users/:userId/cats/', controller.catCreaterController)
 
 // app.put('/cats/:id', controller.catUpdaterController)
 app.put('/users/:id', controller.userUpdaterController)

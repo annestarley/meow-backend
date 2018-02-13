@@ -1,5 +1,5 @@
 const model = require('./model')
-
+const knex = require('./db')
 
 // GETS
 
@@ -67,19 +67,23 @@ const likeByIdController = (req, res, next) => {
 //POSTS
 
 const userCreaterController = (req, res, next) => {
-  const { name, email, hidden, image, city, state, zip } = req.body
+  const { name, password, email, hidden, image, city, state, zip } = req.body
   if(!name || !email || !hidden) return next({status: `Required: make sure to include a name and email address!`})
 
-  const user = model.createUser(name, email, hidden, image, city, state, zip)
-  res.status(201).json(user)
+  model.createUser(name, password, email, hidden, image, city, state, zip)
+  .then((user) => {
+    res.status(201).json(user)
+  })
 }
 
 const catCreaterController = (req, res, next) => {
-  const userId = req.params.id
+  const userId = req.params.userId
   const { name, age, gender, fixed, bio, image1, image2, image3, image4 } = req.body
 
-  const cat = model.createCat(name, age, gender, fixed, bio, image1, image2, image3, image4, userId)
-  res.status(201).json(cat)
+  model.createCat(name, age, gender, fixed, bio, image1, image2, image3, image4, userId)
+  .then(cat => {
+    res.status(201).json(cat)
+  })
 }
 
 // const catByUserCreaterController = (req, res, next) => {

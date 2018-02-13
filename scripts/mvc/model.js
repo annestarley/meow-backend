@@ -1,5 +1,7 @@
 const uuid = require('uuid')
 const fs = require('fs')
+const knex = require('./db')
+
 
 // temporary
 
@@ -151,10 +153,10 @@ function getCatByUserAndId(catId, userId) {
 
 // POSTS
 
-function createUser(name, email, hidden, image, city, state, zip) {
+function createUser(name, password, email, hidden, image, city, state, zip) {
   let user = {
-    id: uuid(),
-    name: name,
+    username: name,
+    password: password,
     email: email,
     hidden: hidden,
     image: image,
@@ -162,27 +164,29 @@ function createUser(name, email, hidden, image, city, state, zip) {
     state: state,
     zip: zip
   }
-  users.push(user)
 
-  return user
+  return knex('users').insert(user)
+    .returning('*')
 }
 
 
 
 function createCat(name, age, gender, fixed, bio, image1, image2, image3, image4, userId) {
   let cat = {
-    id: uuid(),
     name: name,
     age: age,
     gender: gender,
     fixed: fixed,
     bio: bio,
-    images: [image1, image2, image3, image4],
+    image1: image1,
+    image2: image2,
+    image3: image3,
+    image4: image4,
     userId: userId
   }
-  cats.push(cat)
 
-  return cat
+  return knex('cats').insert(cat)
+    .returning('*')
 }
 
 // PUTS
