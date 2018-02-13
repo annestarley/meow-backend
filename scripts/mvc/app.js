@@ -29,9 +29,9 @@ app.post('/users/:id/cats/', controller.catCreaterController)
 app.put('/users/:id', controller.userUpdaterController)
 app.put('/users/:userId/cats/:id', controller.catUpdaterController)
 
-app.delete('/cats/:id', controller.catDeleterController)
+// app.delete('/cats/:id', controller.catDeleterController)
 app.delete('/users/:id', controller.userDeleterController)
-app.delete('/users/:userId/cats/:id', controller.catByUserDeleterController)
+app.delete('/users/:userId/cats/:id', controller.catDeleterController)
 
 
 app.use((err, req, res, next) => {

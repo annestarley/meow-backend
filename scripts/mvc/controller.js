@@ -122,16 +122,25 @@ const catUpdaterController = (req, res, next) => {
 // delete
 
 const catDeleterController = (req, res, next) => {
+  const id = req.params.id
+  const userId = req.params.userId
 
+  const user = model.getUserById(userId)
+  if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
+  const cat = model.getCatById(id)
+  if (!cat) return next({status: 404, message: `Could not find cat with id of ${id}.`})
+
+  const newCatsArray = model.deleteCat(id, userId)
+  res.status(204).json(newCatsArray)
 }
 
 const userDeleterController = (req, res, next) => {
 
 }
 
-const catByUserDeleterController = (req, res, next) => {
-
-}
+// const catByUserDeleterController = (req, res, next) => {
+//
+// }
 
 
 
@@ -152,5 +161,5 @@ module.exports = {
   // catByUserUpdaterController,
   catDeleterController,
   userDeleterController,
-  catByUserDeleterController
+  // catByUserDeleterController
 }

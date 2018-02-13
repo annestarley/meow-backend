@@ -215,6 +215,15 @@ function updateCat(userId, id, name, age, gender, fixed, bio, image1, image2, im
   return cat
 }
 
+// DELETE
+
+function deleteCat(id, userId) {
+  let cat = getCatByUserAndId(id, userId)
+  let catIndex = cats.indexOf(cat)
+  cats.splice(catIndex, 1)
+
+  return cats
+}
 
 module.exports = {
   getAllCats,
@@ -226,5 +235,6 @@ module.exports = {
   createUser,
   createCat,
   updateUser,
-  updateCat
+  updateCat,
+  deleteCat
 }
