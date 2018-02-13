@@ -200,6 +200,21 @@ function updateUser(id, name, email, hidden, image, city, state, zip) {
   return user
 }
 
+function updateCat(userId, id, name, age, gender, fixed, bio, image1, image2, image3, image4) {
+  let cat = getCatByUserAndId(id, userId)
+  cat.name = name
+  cat.age = age
+  cat.gender = gender
+  cat.fixed = fixed
+  cat.bio = bio
+  cat.images[0] = image1
+  cat.images[1] = image2
+  cat.images[2] = image3
+  cat.images[3] = image4
+
+  return cat
+}
+
 
 module.exports = {
   getAllCats,
@@ -210,5 +225,6 @@ module.exports = {
   getCatByUserAndId,
   createUser,
   createCat,
-  updateUser 
+  updateUser,
+  updateCat
 }

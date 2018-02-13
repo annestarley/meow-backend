@@ -101,9 +101,18 @@ const userUpdaterController = (req, res, next) => {
 }
 
 const catUpdaterController = (req, res, next) => {
+  const id = req.params.id
+  const userId = req.params.userId
+  const { name, age, gender, fixed, bio, image1, image2, image3, image4 } = req.body
 
+  const user = model.getUserById(userId)
+  if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
+  const cat = model.getCatById(id)
+  if (!cat) return next({status: 404, message: `Could not find cat with id of ${id}.`})
+
+  const updatedCat = model.updateCat(userId, id, name, age, gender, fixed, bio, image1, image2, image3, image4)
+  res.status(200).json(updatedCat)
 }
-
 
 // const catByUserUpdaterController = (req, res, next) => {
 //
