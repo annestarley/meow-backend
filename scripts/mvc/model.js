@@ -182,8 +182,10 @@ function createCat(name, age, gender, fixed, bio, image1, image2, image3, image4
     image2: image2,
     image3: image3,
     image4: image4,
-    userId: userId
+    userid: userId
   }
+
+  console.log(cat)
 
   return knex('cats').insert(cat)
     .returning('*')
