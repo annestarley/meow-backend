@@ -135,7 +135,13 @@ const catDeleterController = (req, res, next) => {
 }
 
 const userDeleterController = (req, res, next) => {
+  const id = req.params.id
 
+  const user = model.getUserById(id)
+  if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
+
+  const newUsersArray = model.deleteUser(id)
+  res.status(204).json(newUsersArray)
 }
 
 // const catByUserDeleterController = (req, res, next) => {

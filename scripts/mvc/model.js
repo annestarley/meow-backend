@@ -225,6 +225,21 @@ function deleteCat(id, userId) {
   return cats
 }
 
+function deleteUser(id) {
+  let user = getUserById(id)
+  let userCats = getCatsByUser(id)
+
+  let userIndex = users.indexOf(user)
+  users.splice(userIndex, 1)
+
+  userCats.forEach(userCat => {
+    let catIndex = cats.indexOf(userCat)
+    cats.splice(catIndex, 1)
+  })
+
+  return users
+}
+
 module.exports = {
   getAllCats,
   getCatById,
@@ -236,5 +251,6 @@ module.exports = {
   createCat,
   updateUser,
   updateCat,
-  deleteCat
+  deleteCat,
+  deleteUser
 }
