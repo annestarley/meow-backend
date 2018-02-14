@@ -23,14 +23,14 @@ const usersController = (req, res, next) => {
 }
 
 const userByIdController = (req, res, next) => {
-  const id = req.params.id
+  const id = req.params.userId
   const user = model.getUserById(id)
   if (!user) return next({status: 404, message: `Could not find user with id of ${id}.`})
   res.json(user)
 }
 
 const catsByUserController = (req, res, next) => {
-  const id = req.params.id
+  const id = req.params.userId
 
   const user = model.getUserById(id)
   if (!user) return next({status: 404, message: `Could not find user with id of ${id}.`})
@@ -68,7 +68,10 @@ const likeByIdController = (req, res, next) => {
 
 const userCreaterController = (req, res, next) => {
   const { name, password, email, hidden, image, city, state, zip } = req.body
-  if(!name || !email || !hidden) return next({status: `Required: make sure to include a name and email address!`})
+  console.log(req.body);
+  if(!name || !email) return next({status: `Required: make sure to include a name and email address!`})
+
+  console.log(name, password, email, hidden, image, city, state, zip)
 
   model.createUser(name, password, email, hidden, image, city, state, zip)
   .then((user) => {
@@ -94,7 +97,7 @@ const catCreaterController = (req, res, next) => {
 // PUTS
 
 const userUpdaterController = (req, res, next) => {
-  const id = req.params.id
+  const id = req.params.userId
   const user = model.getUserById(id)
   if (!user) return next({status: 404, message: `Could not find user with id of ${id}.`})
 
@@ -139,7 +142,7 @@ const catDeleterController = (req, res, next) => {
 }
 
 const userDeleterController = (req, res, next) => {
-  const id = req.params.id
+  const id = req.params.userId
 
   const user = model.getUserById(id)
   if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
