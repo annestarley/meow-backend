@@ -21,7 +21,9 @@ const catByIdController = (req, res, next) => {
 // users
 const usersController = (req, res, next) => {
   model.getAllUsers()
-  res.json(users)
+    .then(users => {
+      res.json(users)
+    })
 }
 
 const userByIdController = (req, res, next) => {

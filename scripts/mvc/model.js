@@ -120,7 +120,8 @@ function getCatById(id) {
 
 // users
 function getAllUsers() {
-  return users
+  return knex('users')
+    .returning('*')
 }
 
 function getUserById(id) {
