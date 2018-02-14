@@ -133,16 +133,18 @@ function getUserById(id) {
 }
 
 function getCatsByUser(id) {
-  let user = getUserById(id)
-  userCats = []
-  user.cats.forEach(userCat => {
-    cats.forEach(cat => {
-      if (userCat == cat.id) {
-        userCats.push(cat)
-      }
-    })
-  })
-  return userCats
+  // let user = getUserById(id)
+  // userCats = []
+  // user.cats.forEach(userCat => {
+  //   cats.forEach(cat => {
+  //     if (userCat == cat.id) {
+  //       userCats.push(cat)
+  //     }
+  //   })
+  // })
+  // return userCats
+  return knex('cats').where('userid', id)
+    .returning('*')
 }
 
 function getCatByUserAndId(catId, userId) {
