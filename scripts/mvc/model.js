@@ -125,8 +125,11 @@ function getAllUsers() {
 }
 
 function getUserById(id) {
-  let user = users.find(user => user.id == id)
-  if (user) return user
+  // let user = users.find(user => user.id == id)
+  // if (user) return user
+
+  return knex('users').where('id', id)
+    .returning('*')
 }
 
 function getCatsByUser(id) {
