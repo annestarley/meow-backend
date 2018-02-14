@@ -6,7 +6,9 @@ const knex = require('./db')
 // cats
 const catsController = (req, res, next) => {
   const cats = model.getAllCats()
-  res.json(cats)
+    .then(cats => {
+      res.json(cats)
+    })
 }
 
 const catByIdController = (req, res, next) => {
@@ -18,7 +20,7 @@ const catByIdController = (req, res, next) => {
 
 // users
 const usersController = (req, res, next) => {
-  const users = model.getAllUsers()
+  model.getAllUsers()
   res.json(users)
 }
 

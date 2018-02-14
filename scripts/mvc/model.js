@@ -5,111 +5,112 @@ const knex = require('./db')
 
 // temporary
 
-cats = [
-  {
-    id: 1,
-    name: 'Grumpy Cat',
-    age: 5,
-    gender: 'female',
-    fixed: 'prefer not to say...',
-    bio: "I am an example! I'm not as grumpy as I seem. I just hate everyone and thing. I hope you all step on legos today.",
-    images: ['./images/grumpy-cat/1.jpeg', './images/grumpy-cat/2.jpg', './images/grumpy-cat/3.jpg', './images/grumpy-cat/4.jpg'],
-    userId: 1,
-  },
-  {
-    id: 2,
-    name: 'Toothless',
-    age: 2,
-    gender: 'male',
-    fixed: 'nope',
-    bio: "I am an example! I am a Night Fury, arguably the rarest and most intelligent of.. cat species.",
-    images: ['./images/toothless/1.jpg', './images/toothless/2.jpg', './images/toothless/3.jpg'],
-    userId: 2,
-  },
-  {
-    id: 3,
-    name: 'Junior',
-    age: 0,
-    gender: 'male',
-    fixed: 'nope',
-    bio: "I am an example! I like cornflakes, huggies, and balloons that blow up into funny shapes.",
-    images: ['./images/junior/1.jpg', './images/junior/2.jpg', './images/junior/3.jpg', './images/junior/4.jpg'],
-    userId: 3,
-  },
-  {
-    id: 4,
-    name: 'Bat Cat',
-    age: 11,
-    gender: 'male',
-    fixed: 'yes',
-    bio: "I am an example! I'm the cat MEOW deserves, but not the one it needs... or something. I'm not a hero. I'm a silent guardian. A watchful protector.'",
-    images: ['./images/bat-cat/1.jpeg', './images/bat-cat/2.jpg', './images/bat-cat/3.jpg', './images/bat-cat/4.jpeg'],
-    userId: 4,
-  },
-  {
-    id: 5,
-    name: 'Lucifer',
-    age: 17,
-    gender: 'male',
-    fixed: 'yes',
-    bio: "I am an example! I am a farm cat working hard to rid our manor of the vermin it is infested with. I get little appreciation from the the snooty stepdaughter but the rest of the family is a wonderful group of dames.",
-    images: ['./images/lucifer/1.jpeg', './images/lucifer/2.jpg', './images/lucifer/3.jpg', './images/lucifer/4.jpeg'],
-    userId: 1,
-  }
-]
-
-users = [
-  {
-    id: 1,
-    name: 'Lady Tremaine',
-    email: 'ladytremaine@example.com',
-    hidden: false,
-    image:'./images/lucifer/owner.jpg',
-    city: 'FairyLand',
-    state: 'France',
-    zip: 00666,
-    cats: [1, 5]
-  },
-  {
-    id: 2,
-    name: 'Hiccup Horrendous Haddock III',
-    email: 'hiccupIII@example.com',
-    hidden: false,
-    image:'./images/toothless/owner.jpg',
-    city: 'Berk',
-    state: 'Ireland',
-    zip: 12345,
-    cats: [2]
-  },
-  {
-    id: 3,
-    name: 'H.I. Mcdunnough',
-    email: 'hi@example.com',
-    hidden: true,
-    image:'./images/junior/owner.jpg',
-    city: 'Berk',
-    state: 'Ireland',
-    zip: 12345,
-    cats: [3]
-  },
-  {
-    id: 4,
-    name: 'Bruce Wayne',
-    email: 'bruce@wayne-enterprises.com',
-    hidden: true,
-    image:'./images/bat-cat/owner.jpg',
-    city: 'Gotham City',
-    state: 'NJ',
-    zip: 11111,
-    cats: [4]
-  },
-]
+// cats = [
+//   {
+//     id: 1,
+//     name: 'Grumpy Cat',
+//     age: 5,
+//     gender: 'female',
+//     fixed: 'prefer not to say...',
+//     bio: "I am an example! I'm not as grumpy as I seem. I just hate everyone and thing. I hope you all step on legos today.",
+//     images: ['./images/grumpy-cat/1.jpeg', './images/grumpy-cat/2.jpg', './images/grumpy-cat/3.jpg', './images/grumpy-cat/4.jpg'],
+//     userId: 1,
+//   },
+//   {
+//     id: 2,
+//     name: 'Toothless',
+//     age: 2,
+//     gender: 'male',
+//     fixed: 'nope',
+//     bio: "I am an example! I am a Night Fury, arguably the rarest and most intelligent of.. cat species.",
+//     images: ['./images/toothless/1.jpg', './images/toothless/2.jpg', './images/toothless/3.jpg'],
+//     userId: 2,
+//   },
+//   {
+//     id: 3,
+//     name: 'Junior',
+//     age: 0,
+//     gender: 'male',
+//     fixed: 'nope',
+//     bio: "I am an example! I like cornflakes, huggies, and balloons that blow up into funny shapes.",
+//     images: ['./images/junior/1.jpg', './images/junior/2.jpg', './images/junior/3.jpg', './images/junior/4.jpg'],
+//     userId: 3,
+//   },
+//   {
+//     id: 4,
+//     name: 'Bat Cat',
+//     age: 11,
+//     gender: 'male',
+//     fixed: 'yes',
+//     bio: "I am an example! I'm the cat MEOW deserves, but not the one it needs... or something. I'm not a hero. I'm a silent guardian. A watchful protector.'",
+//     images: ['./images/bat-cat/1.jpeg', './images/bat-cat/2.jpg', './images/bat-cat/3.jpg', './images/bat-cat/4.jpeg'],
+//     userId: 4,
+//   },
+//   {
+//     id: 5,
+//     name: 'Lucifer',
+//     age: 17,
+//     gender: 'male',
+//     fixed: 'yes',
+//     bio: "I am an example! I am a farm cat working hard to rid our manor of the vermin it is infested with. I get little appreciation from the the snooty stepdaughter but the rest of the family is a wonderful group of dames.",
+//     images: ['./images/lucifer/1.jpeg', './images/lucifer/2.jpg', './images/lucifer/3.jpg', './images/lucifer/4.jpeg'],
+//     userId: 1,
+//   }
+// ]
+//
+// users = [
+//   {
+//     id: 1,
+//     name: 'Lady Tremaine',
+//     email: 'ladytremaine@example.com',
+//     hidden: false,
+//     image:'./images/lucifer/owner.jpg',
+//     city: 'FairyLand',
+//     state: 'France',
+//     zip: 00666,
+//     cats: [1, 5]
+//   },
+//   {
+//     id: 2,
+//     name: 'Hiccup Horrendous Haddock III',
+//     email: 'hiccupIII@example.com',
+//     hidden: false,
+//     image:'./images/toothless/owner.jpg',
+//     city: 'Berk',
+//     state: 'Ireland',
+//     zip: 12345,
+//     cats: [2]
+//   },
+//   {
+//     id: 3,
+//     name: 'H.I. Mcdunnough',
+//     email: 'hi@example.com',
+//     hidden: true,
+//     image:'./images/junior/owner.jpg',
+//     city: 'Berk',
+//     state: 'Ireland',
+//     zip: 12345,
+//     cats: [3]
+//   },
+//   {
+//     id: 4,
+//     name: 'Bruce Wayne',
+//     email: 'bruce@wayne-enterprises.com',
+//     hidden: true,
+//     image:'./images/bat-cat/owner.jpg',
+//     city: 'Gotham City',
+//     state: 'NJ',
+//     zip: 11111,
+//     cats: [4]
+//   },
+// ]
 
 // GET routes
 
 // cats
 function getAllCats() {
-  return cats
+  return knex('cats')
+    .returning('*')
 }
 
 function getCatById(id) {
