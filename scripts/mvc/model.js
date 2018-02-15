@@ -114,8 +114,7 @@ function getAllCats() {
 }
 
 function getCatById(id) {
-  let cat = cats.find(cat => cat.id == id)
-  if (cat) return cat
+  return knex('cats').where('id', id)
 }
 
 // users
@@ -231,11 +230,16 @@ function updateCat(userId, id, name, age, gender, fixed, bio, image1, image2, im
 // DELETE
 
 function deleteCat(id, userId) {
-  let cat = getCatByUserAndId(id, userId)
-  let catIndex = cats.indexOf(cat)
-  cats.splice(catIndex, 1)
+  // let cat = getCatByUserAndId(id, userId)
+  // let catIndex = cats.indexOf(cat)
+  // cats.splice(catIndex, 1)
+  //
+  // return cats
 
-  return cats
+  return knex('cats')
+    .where('id', id)
+    .del()
+    .returning('*')
 }
 
 function deleteUser(id) {
@@ -251,6 +255,7 @@ function deleteUser(id) {
   })
 
   return users
+
 }
 
 module.exports = {

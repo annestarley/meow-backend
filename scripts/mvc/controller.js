@@ -13,9 +13,12 @@ const catsController = (req, res, next) => {
 
 const catByIdController = (req, res, next) => {
   const id = req.params.id
-  const cat = model.getCatById(id)
-  if (!cat) return next({status: 404, message: `Could not find cat with id of ${id}.`})
-  res.json(cat)
+  model.getCatById(id)
+  .then(([cat])=>{
+    if (!cat) return next({status: 404, message: `Could not find cat with id of ${id}.`})
+    res.json(cat)
+  })
+
 }
 
 // users
@@ -97,11 +100,6 @@ const catCreaterController = (req, res, next) => {
   })
 }
 
-// const catByUserCreaterController = (req, res, next) => {
-//
-// }
-
-
 // PUTS
 
 const userUpdaterController = (req, res, next) => {
@@ -129,24 +127,25 @@ const catUpdaterController = (req, res, next) => {
   res.status(200).json(updatedCat)
 }
 
-// const catByUserUpdaterController = (req, res, next) => {
-//
-// }
-
-
 // delete
 
 const catDeleterController = (req, res, next) => {
   const id = req.params.id
   const userId = req.params.userId
 
-  const user = model.getUserById(userId)
-  if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
-  const cat = model.getCatById(id)
-  if (!cat) return next({status: 404, message: `Could not find cat with id of ${id}.`})
-
-  const newCatsArray = model.deleteCat(id, userId)
-  res.status(204).json(newCatsArray)
+  // const user = model.getUserById(userId)
+  // if (!user) return next({status: 404, message: `Could not find user with id of ${userId}.`})
+   model.getCatById(id)
+   .then(([cat]) => {
+     if (!cat) throw {status: 404, message: `Could not find cat with id of ${id}.`}
+     return model.deleteCat(id, userId)
+   })
+   .then(newCatsArray => {
+    res.status(204).json(newCatsArray)
+  })
+  .catch((err)=>{
+    next(err)
+  })
 }
 
 const userDeleterController = (req, res, next) => {
@@ -176,11 +175,8 @@ module.exports = {
   likeByIdController,
   catCreaterController,
   userCreaterController,
-  // catByUserCreaterController,
   catUpdaterController,
   userUpdaterController,
-  // catByUserUpdaterController,
   catDeleterController,
   userDeleterController,
-  // catByUserDeleterController
 }

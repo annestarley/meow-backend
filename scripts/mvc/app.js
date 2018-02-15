@@ -35,6 +35,7 @@ app.delete('/users/:userId/cats/:id', controller.catDeleterController)
 
 
 app.use((err, req, res, next) => {
+  console.log(err);
   let status = err.status || 404
   res.status(status).json({ error: { message: err.message }})
 })
