@@ -18,20 +18,19 @@ app.get('/users', controller.usersController)
 app.get('/users/:userId', controller.userByIdController)
 app.get('/users/:userId/cats', controller.catsByUserController)
 app.get('/users/:userId/cats/:id', controller.catByUserAndIdController)
-app.get('/likes', controller.likesController)
-app.get('/likes/:id', controller.likeByIdController)
+app.get('/users/:userID/likes', controller.likesController)
+app.get('/users/:userId/likes/:id', controller.likeByIdController)
 
-// app.post('cats', controller.catCreaterController)  "decided I can't create cat without a user"
 app.post('/users', controller.userCreaterController)
 app.post('/users/:userId/cats/', controller.catCreaterController)
+app.post('/users/:userId/likes', controller.likesCreaterController)
 
-// app.put('/cats/:id', controller.catUpdaterController)
 app.put('/users/:userId', controller.userUpdaterController)
 app.put('/users/:userId/cats/:id', controller.catUpdaterController)
 
-// app.delete('/cats/:id', controller.catDeleterController)
 app.delete('/users/:userId', controller.userDeleterController)
 app.delete('/users/:userId/cats/:id', controller.catDeleterController)
+app.delete('/uers/:userId/likes/:catId', controller.likeDeleterController)
 
 
 app.use((err, req, res, next) => {

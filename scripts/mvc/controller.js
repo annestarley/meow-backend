@@ -66,8 +66,7 @@ const catByUserAndIdController = (req, res, next) => {
 
 //likes
 const likesController = (req, res, next) => {
-  const lkes = model.getAllLikes()
-  res.json(likes)
+
 }
 
 const likeByIdController = (req, res, next) => {
@@ -98,6 +97,10 @@ const catCreaterController = (req, res, next) => {
   .then(cat => {
     res.status(201).json(cat)
   })
+}
+
+const likesCreaterController = (req, res, next) => {
+
 }
 
 // PUTS
@@ -158,9 +161,9 @@ const userDeleterController = (req, res, next) => {
   res.status(204).json(newUsersArray)
 }
 
-// const catByUserDeleterController = (req, res, next) => {
-//
-// }
+const likeDeleterController = (req, res, next) => {
+  
+}
 
 
 
@@ -179,4 +182,6 @@ module.exports = {
   userUpdaterController,
   catDeleterController,
   userDeleterController,
+  likesCreaterController,
+  likeDeleterController
 }
