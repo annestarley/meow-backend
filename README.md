@@ -23,4 +23,4 @@ This project uses the following:
 
 Deployed site found at: http://meow-cat-tinder.surge.sh/ 
   
-### backend found at https://github.com/annestarley/meow
+### frontend found at https://github.com/annestarley/meow
